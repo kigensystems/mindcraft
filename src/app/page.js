@@ -1,7 +1,7 @@
 'use client';
 import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
-import HowItWorks from '@/components/HowItWorks';
+import Features from '@/components/Features';
 import InstallationGuide from '@/components/InstallationGuide';
 import Footer from '@/components/Footer';
 import AnimatedTitle from '@/components/AnimatedTitle';
@@ -58,7 +58,7 @@ export default function Home() {
 
           {/* How It Works Section */}
           <div className="w-full">
-            <HowItWorks />
+            <Features />
           </div>
 
           {/* Installation Guide Section */}

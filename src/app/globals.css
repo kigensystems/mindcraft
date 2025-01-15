@@ -306,6 +306,23 @@ strong, b {
   }
 }
 
+.steve-3d-wrapper {
+  perspective: 1000px;
+  transform-style: preserve-3d;
+}
+
+.steve-3d {
+  transform-style: preserve-3d;
+  transform: perspective(1000px) rotateY(2deg) translateZ(10px);
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+  transition: all 0.3s ease-out;
+}
+
+.steve-3d:hover {
+  transform: perspective(1000px) rotateY(4deg) translateZ(30px);
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.25));
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

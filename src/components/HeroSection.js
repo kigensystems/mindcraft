@@ -17,17 +17,23 @@ export default function HeroSection() {
             delay={0}
             className="min-h-[500px] flex items-center justify-center p-12"
           >
-            <img
-              src="/steveai.svg"
-              alt="Steve with AI visualization"
-              className="w-full h-full object-contain"
+            <div
+              className={`w-full h-full ${isInView ? "steve-3d-wrapper" : ""}`}
               style={{
-                transform: `translateX(${isInView ? "0" : "-20%"})`,
                 opacity: isInView ? Math.min(scrollProgress * 1.5, 1) : 0,
+                transform: `translateX(${isInView ? "0" : "-20%"})`,
                 transition: "all 800ms ease-out",
                 transitionDelay: "300ms",
               }}
-            />
+            >
+              <img
+                src="/steveai.svg"
+                alt="Steve with AI visualization"
+                className={`w-full h-full object-contain ${
+                  isInView ? "steve-3d" : ""
+                }`}
+              />
+            </div>
           </GlassContainer>
 
           {/* Text Container */}
@@ -57,50 +63,17 @@ export default function HeroSection() {
             >
               Mindcraft introduces a new era of gameplay where advanced AI
               agents become real teammates in your Minecraft world.
-              <br /><br />
-              These highly intelligent agents comprehend the 3D space around them, learn from every
-              interaction, and collaborate with you.
-              <br /><br />
+              <br />
+              <br />
+              These highly intelligent agents comprehend the 3D space around
+              them, learn from every interaction, and collaborate with you.
+              <br />
+              <br />
               Whether you're constructing complex structures, exploring vast
               territories, or simply looking for a smarter way to play, these
               agents adapt to your style and enhance your Minecraft experience
               in ways previously unimaginable.
             </p>
-            <div className="space-y-8 text-white/70 text-lg">
-              <p
-                className="font-semibold tracking-wide"
-                style={{
-                  transform: `translateX(${isInView ? "0" : "20%"})`,
-                  opacity: isInView ? Math.min(scrollProgress * 3, 1) : 0,
-                  transition: "all 600ms ease-out",
-                  transitionDelay: "200ms",
-                }}
-              >
-                Intelligent building assistance and automation
-              </p>
-              <p
-                className="font-semibold tracking-wide"
-                style={{
-                  transform: `translateX(${isInView ? "0" : "20%"})`,
-                  opacity: isInView ? Math.min(scrollProgress * 3 - 0.4, 1) : 0,
-                  transition: "all 600ms ease-out",
-                  transitionDelay: "300ms",
-                }}
-              >
-                Natural language communication with AI agents
-              </p>
-              <p
-                className="font-semibold tracking-wide"
-                style={{
-                  transform: `translateX(${isInView ? "0" : "20%"})`,
-                  opacity: isInView ? Math.min(scrollProgress * 3 - 0.8, 1) : 0,
-                  transition: "all 600ms ease-out",
-                  transitionDelay: "400ms",
-                }}
-              >
-                Dynamic world interaction and adaptation
-              </p>
-            </div>
           </GlassContainer>
         </div>
       </div>
