@@ -2,20 +2,190 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@font-face {
+  font-family: 'MinecrafterRegular';
+  src: url('/fonts/Minecrafter.Reg.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@font-face {
+  font-family: 'MinecrafterAlt';
+  src: url('/fonts/Minecrafter.Alt.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  /* Base colors from Minecraft */
+  --minecraft-stone: #7A7A7A;
+  --minecraft-shadow: #404040;
+  --minecraft-deepslate: #2F3640;
+  --text-primary: #FFFFFF;
+  --text-secondary: #E0E0E0;
+  --background-primary: rgba(0, 0, 0, 0.85);
+  --background-secondary: rgba(47, 54, 64, 0.75);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--text-primary);
+  background: linear-gradient(
+    var(--background-primary),
+    var(--background-secondary)
+  ),
+  url('/mindcraft-background.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  display: block;
+}
+
+/* Hero Title Styles */
+.minecraft-title {
+  font-family: 'MinecrafterRegular', Arial, sans-serif;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.3s ease;
+  animation: float 6s ease-in-out infinite;
+  white-space: nowrap;
+  display: inline-block;
+  perspective: 1000px;
+  height: 200px; /* Fixed height to prevent layout shifts */
+  margin-bottom: 50px; /* Space below the floating title */
+}
+
+.hero-shadow-deep,
+.hero-shadow,
+.hero-main {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform-style: preserve-3d;
+  will-change: transform; /* Optimize for animations */
+}
+
+.hero-shadow-deep {
+  color: var(--minecraft-shadow);
+  transform: translate(-50%, -50%) translateZ(-4px) translate(8px, 8px);
+}
+
+.hero-shadow {
+  color: var(--minecraft-stone);
+  transform: translate(-50%, -50%) translateZ(-2px) translate(4px, 4px);
+}
+
+.hero-main {
+  color: var(--text-primary);
+  transform: translate(-50%, -50%) translateZ(0);
+}
+
+/* Glass Effect Styles */
+.glass-effect {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.05);
+}
+
+.glass-effect:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+  transition: all 0.3s ease;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotateX(2deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(-2deg);
+  }
+}
+
+/* Navigation Styles */
+.nav-blur {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: linear-gradient(
+    90deg,
+    var(--background-primary),
+    var(--background-secondary)
+  );
+}
+
+.nav-link {
+  font-family: 'MinecrafterAlt', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1.5rem;
+  position: relative;
+  font-size: 1rem;
+  line-height: 1;
+  color: var(--text-secondary);
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--text-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav-link:hover {
+  color: var(--text-primary);
+}
+
+.nav-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Container */
+.container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  position: relative;
+}
+
+@media (min-width: 640px) {
+  .container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    padding: 0 4rem;
+  }
+}
+
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
 }
