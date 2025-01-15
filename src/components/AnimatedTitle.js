@@ -25,40 +25,57 @@ export default function AnimatedTitle() {
   };
 
   return (
-    <div
-      ref={ref}
-      className="relative inline-block perspective-1000"
-      style={{
-        transform: getTransform(),
-        opacity: isInView ? Math.min(scrollProgress * 1.5, 1) : 0,
-        transition: 'opacity 300ms ease-out',
-        transformStyle: 'preserve-3d',
-        transformOrigin: 'center bottom'
-      }}
-    >
-      <h1 
-        className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider"
-        style={titleStyle}
+    <div className="text-center">
+      <div
+        ref={ref}
+        className="relative inline-block perspective-1000"
+        style={{
+          transform: getTransform(),
+          opacity: isInView ? Math.min(scrollProgress * 1.5, 1) : 0,
+          transition: 'opacity 300ms ease-out',
+          transformStyle: 'preserve-3d',
+          transformOrigin: 'center bottom'
+        }}
       >
-        <span 
-          className="hero-shadow-deep absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+        <h1 
+          className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider"
           style={titleStyle}
         >
-          MINDCRAFT
-        </span>
-        <span 
-          className="hero-shadow absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
-          style={titleStyle}
-        >
-          MINDCRAFT
-        </span>
-        <span 
-          className="hero-main absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
-          style={titleStyle}
-        >
-          MINDCRAFT
-        </span>
-      </h1>
+          <span 
+            className="hero-shadow-deep absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+            style={titleStyle}
+          >
+            MINDCRAFT
+          </span>
+          <span 
+            className="hero-shadow absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+            style={titleStyle}
+          >
+            MINDCRAFT
+          </span>
+          <span 
+            className="hero-main absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+            style={titleStyle}
+          >
+            MINDCRAFT
+          </span>
+        </h1>
+      </div>
+      <h2 
+        className="text-xl md:text-2xl lg:text-3xl text-white/90 -mt-4 font-['MinecrafterRegular'] tracking-[0.2em] uppercase"
+        style={{
+          opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
+          transform: `translateY(${isInView ? "0" : "20px"})`,
+          transition: "all 600ms ease-out",
+          transitionDelay: "200ms",
+          letterSpacing: '0.2em',
+          textShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
+          maxWidth: '800px',
+          margin: '0 auto',
+        }}
+      >
+        Where Minecraft Meets Intelligence
+      </h2>
     </div>
   );
 }

@@ -11,20 +11,47 @@ export default function InstallationGuide() {
     {
       number: 1,
       title: "Download Minecraft",
-      description: "Ensure you have Minecraft Java Edition installed and updated to the latest version"
+      description: "Download Minecraft Java Edition v1.20.4 from the official website: ",
+      link: {
+        url: "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-4",
+        text: "Click here to download Minecraft v1.20.4"
+      }
     },
     {
       number: 2,
-      title: "Install Forge",
-      description: "Download and install the Forge mod loader compatible with your Minecraft version"
+      title: "Install Node.js",
+      description: "Download and install Node.js from the official website: ",
+      link: {
+        url: "https://nodejs.org/en",
+        text: "Click here to download Node.js"
+      }
     },
     {
       number: 3,
-      title: "Install Mindcraft",
-      description: "Download our mod and place it in your Minecraft mods folder"
+      title: "Obtain your API Key",
+      description: "The full list of supported models is available on our Github. We recommend ",
+      link: {
+        url: "https://openai.com/index/openai-api/",
+        text: "OpenAI."
+      }
     },
     {
       number: 4,
+      title: "Download Mindcraft",
+      description: "Visit our Github ",
+      link: {
+        url: "https://github.com/kolbytn/mindcraft",
+        text: "here"
+      },
+      description2: ", clone or download the repository."
+    },
+    {
+      number: 5,
+      title: "Setup and Configuration",
+      description: "5.1. Rename keys.example.json to keys.json and add your API key\n     (you can edit this file with any text editor or notepad)\n\n\n5.2. Open andy.json and set your desired model\n     For example, keys.json would be \"OPENAI_API_KEY\" and\n     andy.json would be \"gpt-4o-mini\"\n\n\n5.3. Open the \"mindcraft\" folder in the terminal\n     (right click > \"new terminal at folder\" or\n     use \"cd /path/to/your/folder\")\n     and run npm install\n\n\n5.4. Start a minecraft world and open it to LAN\n     on localhost port 55916\n\n\n5.5. Return to your terminal and type \"node main.js\"\n     from the installed directory"
+    },
+    {
+      number: 6,
       title: "Launch & Play",
       description: "Start Minecraft with the Forge profile and enjoy your enhanced AI experience"
     }
@@ -89,7 +116,20 @@ export default function InstallationGuide() {
                       <span className="text-white/90">{step.number}</span>
                     </div>
                     <h3 className="text-xl font-semibold mb-2 text-white/90">{step.title}</h3>
-                    <p className="text-base text-white/80">{step.description}</p>
+                    <p className="text-base text-white/80">
+                      {step.description}
+                      {step.link && (
+                        <a
+                          href={step.link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-[#88C057] hover:text-[#a3d578] underline transition-colors duration-200"
+                        >
+                          {step.link.text}
+                        </a>
+                      )}
+                      {step.description2}
+                    </p>
                   </div>
                 );
               })}

@@ -74,12 +74,13 @@ export default function Features() {
                     {feature.title}
                   </h3>
                   <p
-                    className="text-base md:text-lg text-white/70 leading-relaxed max-w-lg"
+                    className="text-base md:text-lg text-white/80 leading-relaxed max-w-lg"
                     style={{
                       opacity: isInView ? Math.min(scrollProgress * 2 - 0.2, 1) : 0,
                       transform: `translateY(${isInView ? "0" : "20px"})`,
                       transition: "all 600ms ease-out",
                       transitionDelay: `${index * 100 + 100}ms`,
+                      textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                     }}
                   >
                     {feature.description}
