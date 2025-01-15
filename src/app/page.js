@@ -45,7 +45,7 @@ export default function Home() {
       <div id="content-wrapper">
         <main className="w-full flex flex-col">
           {/* Title Section */}
-          <div className="w-full pt-[150px] pb-[100px]">
+          <div className="w-full pt-[150px]">
             <div className="container mx-auto px-4 text-center">
               <AnimatedTitle />
             </div>

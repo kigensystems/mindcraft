@@ -7,18 +7,39 @@ export default function useInView(options = {}) {
   const ref = useRef(null);
 
   useEffect(() => {
+    let lastScrollTime = Date.now();
+    let lastScrollProgress = 0;
+
     const observer = new IntersectionObserver(([entry]) => {
       setIsInView(entry.isIntersecting);
       if (entry.isIntersecting) {
-        // Calculate how far into view the element is
+        const currentTime = Date.now();
+        const timeDelta = currentTime - lastScrollTime;
         const progress = entry.intersectionRatio;
-        // Apply spring-like easing
-        const springProgress = 1 - Math.cos((progress * Math.PI) / 2);
-        setScrollProgress(springProgress);
+        
+        // Calculate scroll velocity with higher sensitivity
+        const progressDelta = Math.abs(progress - lastScrollProgress);
+        const velocity = progressDelta / Math.max(timeDelta, 8); // 120fps = ~8ms for smoother updates
+        
+        // Enhanced velocity impact
+        const velocityFactor = Math.min(velocity * 1000, 1.5); // Increased velocity effect
+        
+        // Multi-stage spring effect
+        const baseProgress = progress;
+        const springEffect = Math.sin(progress * Math.PI * 2) * 0.15;
+        const velocitySpring = Math.sin(progress * Math.PI) * velocityFactor * 0.2;
+        
+        // Combine effects for more dramatic response
+        const dynamicProgress = baseProgress + springEffect + velocitySpring;
+        
+        setScrollProgress(Math.max(0, Math.min(dynamicProgress, 1)));
+        
+        lastScrollTime = currentTime;
+        lastScrollProgress = progress;
       }
     }, {
-      // Create 50 thresholds for ultra-smooth progress
-      threshold: Array.from({ length: 50 }, (_, i) => i / 49),
+      // Create 100 thresholds for more granular progress
+      threshold: Array.from({ length: 100 }, (_, i) => i / 99),
       rootMargin: options.rootMargin || '0px'
     });
 

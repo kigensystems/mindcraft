@@ -12,20 +12,32 @@ export default function GlassContainer({
   });
 
   const getTransform = () => {
-    if (!isInView) return 'translateY(40px) scale(0.95)';
+    if (!isInView) return 'translateY(25%) scale(0.9) rotateX(10deg)';
     
     const progress = Math.min(Math.max(scrollProgress, 0), 1);
     
-    // Enhanced spring-like easing function with more "pop"
-    const easeProgress = 1 - Math.pow(1 - progress, 4); // Quartic ease-out for sharper acceleration
-    const springProgress = progress + (Math.sin(progress * Math.PI * 2) * 0.15); // Increased oscillation
+    // More dramatic spring effect
+    const easeProgress = 1 - Math.pow(1 - progress, 4); // Sharper ease-out
+    const springAmount = Math.min(0.2 + (progress * 0.15), 0.35); // Increased spring
+    const springProgress = progress + (Math.sin(progress * Math.PI * 3) * springAmount); // More oscillations
     
-    // More dynamic animation with enhanced spring effect
+    // Enhanced overshoot for more noticeable effect
+    const overshoot = Math.sin(progress * Math.PI * 2) * 0.05;
+    const scale = 0.9 + (0.1 * easeProgress) + (overshoot * (1 - progress));
+    
+    // More dramatic transforms
+    const translateY = 25 - (25 * springProgress); // Increased travel distance
+    const translateZ = overshoot * 10; // More pronounced depth
+    const rotateX = 10 * (1 - springProgress); // Added rotation
+    const skewY = overshoot * 2; // Subtle skew for dynamic feel
+    
     return `
-      translateY(${35 - (35 * springProgress)}px)
-      scale(${0.95 + (0.05 * easeProgress)})
-      perspective(1000px)
-      rotateX(${2 - (2 * easeProgress)}deg)
+      translateY(${translateY}%)
+      scale(${scale})
+      perspective(100%)
+      rotateX(${rotateX}deg)
+      translateZ(${translateZ}%)
+      skewY(${skewY}deg)
     `;
   };
 
@@ -35,28 +47,35 @@ export default function GlassContainer({
       className={`
         bg-gradient-to-b from-white/[0.04] to-white/[0.02]
         backdrop-blur-sm
-        border border-white/10
+        border-2 border-white/15
         rounded-xl
-        shadow-[0_8px_32px_-10px_rgba(0,0,0,0.2)]
+        shadow-[0_0.5rem_2rem_-0.625rem_rgba(0,0,0,0.2)]
         transition-all
         hover:bg-gradient-to-b hover:from-white/[0.07] hover:to-white/[0.03]
-        hover:border-white/30
-        hover:shadow-[0_20px_40px_-12px_rgba(0,0,0,0.3)]
+        hover:border-white/40
+        hover:shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)]
         hover:backdrop-blur-md
         hover:scale-[1.02]
         hover:border-opacity-100
+        ring-1 ring-white/5
+        ring-offset-0
         ${className}
       `}
       style={{
         transform: getTransform(),
-        opacity: isInView ? Math.min(scrollProgress * 1.1, 1) : 0,
-        transition: 'all 800ms cubic-bezier(0.34, 1.56, 0.64, 1)',
+        opacity: isInView ? Math.min(scrollProgress * 1.2 + (Math.sin(scrollProgress * Math.PI) * 0.1), 1) : 0,
+        transition: 'all 600ms cubic-bezier(0.34, 1.56, 0.64, 1)',
         transformOrigin: 'center bottom',
-        willChange: 'transform, opacity, box-shadow, border-color',
+        willChange: 'transform, opacity, box-shadow, border-color, filter',
         transitionDelay: `${delay}ms`,
+        filter: `brightness(${100 + (scrollProgress * 15)}%)`,
         boxShadow: isInView
-          ? `0 8px 32px -10px rgba(0,0,0,0.2),
-             0 0 ${Math.min(scrollProgress * 15, 10)}px ${Math.min(scrollProgress * 3, 2)}px rgba(255,255,255,0.1)`
+          ? `0 ${0.5 + scrollProgress}rem ${2 + scrollProgress}rem -0.625rem rgba(0,0,0,0.2),
+             0 0 ${Math.min(scrollProgress * 2, 1)}rem ${Math.min(scrollProgress * 0.5, 0.25)}rem rgba(255,255,255,0.15),
+             inset 0 0 ${0.0625 + (scrollProgress * 0.125)}rem ${0.0625 + (scrollProgress * 0.125)}rem rgba(255,255,255,0.15)`
+          : 'none',
+        borderImage: isInView
+          ? 'linear-gradient(to bottom right, rgba(255,255,255,0.2), rgba(255,255,255,0.1)) 1'
           : 'none'
       }}
     >

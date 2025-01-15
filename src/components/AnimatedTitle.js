@@ -19,6 +19,11 @@ export default function AnimatedTitle() {
     return `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`;
   };
 
+  const titleStyle = {
+    fontFamily: "'MinecrafterRegular', Arial, sans-serif",
+    letterSpacing: '0.05em'
+  };
+
   return (
     <div
       ref={ref}
@@ -31,10 +36,28 @@ export default function AnimatedTitle() {
         transformOrigin: 'center bottom'
       }}
     >
-      <h1 className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider">
-        <span className="hero-shadow-deep">MINDCRAFT</span>
-        <span className="hero-shadow">MINDCRAFT</span>
-        <span className="hero-main">MINDCRAFT</span>
+      <h1 
+        className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider"
+        style={titleStyle}
+      >
+        <span 
+          className="hero-shadow-deep absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+          style={titleStyle}
+        >
+          MINDCRAFT
+        </span>
+        <span 
+          className="hero-shadow absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+          style={titleStyle}
+        >
+          MINDCRAFT
+        </span>
+        <span 
+          className="hero-main absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
+          style={titleStyle}
+        >
+          MINDCRAFT
+        </span>
       </h1>
     </div>
   );

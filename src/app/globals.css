@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,6 +27,7 @@
   --text-secondary: #E0E0E0;
   --background-primary: rgba(0, 0, 0, 0.55);
   --background-secondary: rgba(47, 54, 64, 0.45);
+  --accent-green: #88C057;
 }
 
 html, body {
@@ -41,11 +44,46 @@ body {
   position: relative;
   min-height: 100vh;
   overflow-x: hidden;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  line-height: 1.6;
+  background-color: #000;
 }
 
-body {
-  min-height: 100vh;
-  background-color: #000;
+/* Base typography styles */
+h1, h2, h3, h4, h5, h6,
+.nav-link {
+  font-family: 'MinecrafterRegular', Arial, sans-serif;
+  line-height: 1.2;
+}
+
+/* Subheading typography adjustments */
+h2 {
+  letter-spacing: 0.05em;
+  word-spacing: 0.2em;
+}
+
+h3 {
+  letter-spacing: 0.04em;
+  word-spacing: 0.15em;
+}
+
+h4, h5, h6 {
+  letter-spacing: 0.03em;
+  word-spacing: 0.1em;
+}
+
+p, span, div {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Adjust font weights */
+p {
+  font-weight: 300;
+}
+
+strong, b {
+  font-weight: 500;
 }
 
 .background-wrapper {
@@ -83,20 +121,6 @@ body {
   min-height: 100vh;
 }
 
-/* Smooth scrolling for the entire page */
-html {
-  scroll-behavior: smooth;
-}
-
-@keyframes pulse {
-  0%, 100% {
-    opacity: 0.55;
-  }
-  50% {
-    opacity: 0.35;
-  }
-}
-
 /* Hero Title Styles */
 .minecraft-title {
   font-family: 'MinecrafterRegular', Arial, sans-serif;
@@ -109,6 +133,13 @@ html {
   perspective: 1000px;
   height: 200px; /* Fixed height to prevent layout shifts */
   margin-bottom: 50px; /* Space below the floating title */
+  width: 100%;
+  text-align: center;
+}
+
+.transform-style-3d {
+  transform-style: preserve-3d;
+  will-change: transform;
 }
 
 .hero-shadow-deep,
@@ -130,16 +161,55 @@ html {
 .hero-shadow-deep {
   color: var(--minecraft-shadow);
   transform: translate(-50%, -50%) translateZ(-4px) translate(8px, 8px);
+  filter: blur(1px);
+  opacity: 0.7;
+  font-family: 'MinecrafterRegular', Arial, sans-serif !important;
 }
 
 .hero-shadow {
   color: var(--minecraft-stone);
   transform: translate(-50%, -50%) translateZ(-2px) translate(4px, 4px);
+  filter: blur(0.5px);
+  opacity: 0.85;
+  font-family: 'MinecrafterRegular', Arial, sans-serif !important;
 }
 
 .hero-main {
   color: var(--text-primary);
   transform: translate(-50%, -50%) translateZ(0);
+  font-family: 'MinecrafterRegular', Arial, sans-serif !important;
+  text-shadow: 
+    /* Pixelated outer glow */
+    0 0 20px rgba(255, 255, 255, 0.2),
+    /* Minecraft-style blocky edges */
+    2px 0 0 rgba(255, 255, 255, 0.15),
+    -2px 0 0 rgba(255, 255, 255, 0.15),
+    0 2px 0 rgba(255, 255, 255, 0.15),
+    0 -2px 0 rgba(255, 255, 255, 0.15),
+    /* Diagonal edges for blockiness */
+    2px 2px 0 rgba(255, 255, 255, 0.1),
+    -2px -2px 0 rgba(255, 255, 255, 0.1),
+    2px -2px 0 rgba(255, 255, 255, 0.1),
+    -2px 2px 0 rgba(255, 255, 255, 0.1);
+  /* Add a subtle stroke */
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.1));
+}
+
+/* Add hover effect */
+.minecraft-title:hover .hero-main {
+  text-shadow: 
+    0 0 25px rgba(255, 255, 255, 0.3),
+    2px 0 0 rgba(255, 255, 255, 0.2),
+    -2px 0 0 rgba(255, 255, 255, 0.2),
+    0 2px 0 rgba(255, 255, 255, 0.2),
+    0 -2px 0 rgba(255, 255, 255, 0.2),
+    2px 2px 0 rgba(255, 255, 255, 0.15),
+    -2px -2px 0 rgba(255, 255, 255, 0.15),
+    2px -2px 0 rgba(255, 255, 255, 0.15),
+    -2px 2px 0 rgba(255, 255, 255, 0.15);
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.15));
+  transition: all 0.3s ease-out;
 }
 
 /* Glass Effect Styles */
@@ -156,27 +226,6 @@ html {
   border: 1px solid rgba(255, 255, 255, 0.2);
   transform: translateY(-2px);
   transition: all 0.3s ease;
-}
-
-/* Animations */
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0) rotateX(2deg);
-  }
-  50% {
-    transform: translateY(-20px) rotateX(-2deg);
-  }
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Navigation Styles */
@@ -209,19 +258,21 @@ html {
   left: 0;
   width: 100%;
   height: 2px;
-  background: var(--text-primary);
+  background: var(--accent-green);
   transform: scaleX(0);
   transform-origin: right;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(136, 192, 87, 0.3);
 }
 
 .nav-link:hover {
-  color: var(--text-primary);
+  color: var(--accent-green);
 }
 
 .nav-link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
+  box-shadow: 0 0 15px rgba(136, 192, 87, 0.4);
 }
 
 /* Container */
@@ -243,6 +294,68 @@ html {
   .container {
     padding: 0 4rem;
   }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotateX(2deg);
+  }
+  50% {
+    transform: translateY(-20px) rotateX(-2deg);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Component Typography */
+.glass-effect h2 {
+  font-family: 'MinecrafterRegular', Arial, sans-serif;
+  letter-spacing: 0.06em;
+  word-spacing: 0.2em;
+  line-height: 1.4;
+  margin-bottom: 1.2em;
+}
+
+.glass-effect h3 {
+  font-family: 'MinecrafterRegular', Arial, sans-serif;
+  letter-spacing: 0.05em;
+  word-spacing: 0.15em;
+  line-height: 1.3;
+  margin-bottom: 0.8em;
+}
+
+.glass-effect p {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  line-height: 1.6;
+}
+
+.glass-effect strong {
+  font-weight: 500;
+}
+
+/* Adjust list text */
+li {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+}
+
+/* Keep navigation and buttons in Minecrafter */
+button, 
+.nav-link,
+.minecraft-style {
+  font-family: 'MinecrafterRegular', Arial, sans-serif;
 }
 
 /* Smooth Scroll */
