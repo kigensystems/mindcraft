@@ -4,7 +4,8 @@ import useInView from '@/hooks/useInView';
 
 export default function InstallationGuide() {
   const [ref, isInView, scrollProgress] = useInView({
-    rootMargin: '-20%'
+    rootMargin: '-5%',
+    threshold: 0.1
   });
 
   const steps = [
@@ -48,7 +49,13 @@ export default function InstallationGuide() {
     {
       number: 5,
       title: "Setup and Configuration",
-      description: "5.1. Rename keys.example.json to keys.json and add your API key\n     (you can edit this file with any text editor or notepad)\n\n\n5.2. Open andy.json and set your desired model\n     For example, keys.json would be \"OPENAI_API_KEY\" and\n     andy.json would be \"gpt-4o-mini\"\n\n\n5.3. Open the \"mindcraft\" folder in the terminal\n     (right click > \"new terminal at folder\" or\n     use \"cd /path/to/your/folder\")\n     and run npm install\n\n\n5.4. Start a minecraft world and open it to LAN\n     on localhost port 55916\n\n\n5.5. Return to your terminal and type \"node main.js\"\n     from the installed directory"
+      description: [
+        "5.1. Rename keys.example.json to keys.json and add your API key (you can edit this file with any text editor)",
+        "5.2. Open andy.json and set your desired model (keys.json: \"OPENAI_API_KEY\", andy.json: \"gpt-4o-mini\")",
+        "5.3. Open the \"mindcraft\" folder in terminal (right click > \"new terminal at folder\" or use \"cd /path/to/your/folder\") and run npm install",
+        "5.4. Start a minecraft world and open it to LAN on port 55916",
+        "5.5. Return to your terminal and type \"node main.js\" from the installed directory"
+      ].join("\n\n")
     },
     {
       number: 6,
@@ -89,47 +96,55 @@ export default function InstallationGuide() {
             >
               Installation Guide
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
               {steps.map((step, index) => {
                 // Calculate progress for each step based on scroll position
-                const stepProgress = Math.max(0, (scrollProgress * 4) - (index * 0.6));
+                const stepProgress = Math.max(0, Math.min(scrollProgress * 3 - (index * 0.05), 1));
                 
                 return (
                   <div 
                     key={step.number}
-                    className="relative pl-8"
+                    className={`relative pl-8 ${step.number === 5 ? 'space-y-4' : ''}`}
                     style={{
-                      transform: `translateY(${isInView ? '0' : '30%'})`,
-                      opacity: isInView ? Math.min(stepProgress, 1) : 0,
-                      transition: 'all 600ms ease-out',
-                      transitionDelay: `${index * 100}ms`
+                      transform: `translateY(${isInView ? '0' : '40px'})`,
+                      opacity: stepProgress,
+                      transition: 'all 800ms cubic-bezier(0.4, 0, 0.2, 1)',
+                      transitionDelay: `${index * 50}ms`
                     }}
                   >
                     <div 
                       className="absolute left-0 top-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center"
                       style={{
                         transform: isInView ? 'scale(1)' : 'scale(0)',
-                        transition: 'transform 400ms ease-out',
-                        transitionDelay: `${(index * 100) + 200}ms`
+                        transition: 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)',
+                        transitionDelay: `${index * 50}ms`
                       }}
                     >
                       <span className="text-white/90">{step.number}</span>
                     </div>
                     <h3 className="text-xl font-semibold mb-2 text-white/90">{step.title}</h3>
-                    <p className="text-base text-white/80">
-                      {step.description}
-                      {step.link && (
-                        <a
-                          href={step.link.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-[#88C057] hover:text-[#a3d578] underline transition-colors duration-200"
-                        >
-                          {step.link.text}
-                        </a>
-                      )}
-                      {step.description2}
-                    </p>
+                    {step.number === 5 ? (
+                      step.description.split('\n\n').map((text, idx) => (
+                        <p key={idx} className="text-base text-white/80 mb-4 last:mb-0">
+                          {text}
+                        </p>
+                      ))
+                    ) : (
+                      <p className="text-base text-white/80">
+                        {step.description}
+                        {step.link && (
+                          <a
+                            href={step.link.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#88C057] hover:text-[#a3d578] underline transition-colors duration-200"
+                          >
+                            {step.link.text}
+                          </a>
+                        )}
+                        {step.description2}
+                      </p>
+                    )}
                   </div>
                 );
               })}
