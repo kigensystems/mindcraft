@@ -31,28 +31,33 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-20">
+    <section className="py-20" ref={ref}>
       <div className="container mx-auto">
-        <h2
-          className="text-4xl md:text-5xl text-center mb-16 text-white/90"
-          style={{
-            opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
-            transform: `translateY(${isInView ? "0" : "20px"})`,
-            transition: "all 600ms ease-out",
-          }}
-        >
-          Core Capabilities
-        </h2>
         <GlassContainer
           direction="up"
           delay={0}
-          className="p-10 md:p-12 max-w-5xl mx-auto"
+          className="p-10 md:p-12"
         >
-          <div ref={ref} className="space-y-12">
+          <h2
+            className="text-4xl md:text-5xl text-center mb-16 text-white/90 font-['MinecrafterRegular']"
+            style={{
+              opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
+              transform: `translateY(${isInView ? "0" : "20px"})`,
+              transition: "all 600ms ease-out",
+            }}
+          >
+            Core Capabilities
+          </h2>
+          <div 
+            className="grid grid-cols-1 md:grid-cols-2 gap-8"
+          >
             {features.map((feature, index) => (
-              <div key={index} className="feature-item">
+              <div
+                key={index}
+                className="bg-white/[0.02] rounded-lg p-8 md:p-10 hover:translate-y-[-4px] transition-transform duration-300 flex flex-col items-center text-center border border-white/[0.05]"
+              >
                 <div 
-                  className="flex items-center gap-6 mb-6"
+                  className="flex flex-col items-center"
                   style={{
                     opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
                     transform: `translateY(${isInView ? "0" : "20px"})`,
@@ -63,23 +68,23 @@ export default function Features() {
                   <img 
                     src={feature.icon} 
                     alt="" 
-                    className="w-12 h-12 md:w-16 md:h-16 object-contain"
+                    className="w-24 h-24 md:w-32 md:h-32 object-contain mb-8"
                   />
-                  <h3 className="text-2xl md:text-3xl text-white/90 flex-1">
+                  <h3 className="text-xl md:text-2xl text-white/90 font-['MinecrafterRegular'] mb-4 leading-relaxed">
                     {feature.title}
                   </h3>
+                  <p
+                    className="text-base md:text-lg text-white/70 leading-relaxed max-w-lg"
+                    style={{
+                      opacity: isInView ? Math.min(scrollProgress * 2 - 0.2, 1) : 0,
+                      transform: `translateY(${isInView ? "0" : "20px"})`,
+                      transition: "all 600ms ease-out",
+                      transitionDelay: `${index * 100 + 100}ms`,
+                    }}
+                  >
+                    {feature.description}
+                  </p>
                 </div>
-                <p
-                  className="text-lg text-white/80 leading-relaxed pl-[72px] md:pl-[88px]"
-                  style={{
-                    opacity: isInView ? Math.min(scrollProgress * 2 - 0.2, 1) : 0,
-                    transform: `translateY(${isInView ? "0" : "20px"})`,
-                    transition: "all 600ms ease-out",
-                    transitionDelay: `${index * 100 + 100}ms`,
-                  }}
-                >
-                  {feature.description}
-                </p>
               </div>
             ))}
           </div>
