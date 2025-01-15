@@ -3,17 +3,22 @@ import { useState, useEffect, useRef } from 'react';
 
 export default function useInView(options = {}) {
   const [isInView, setIsInView] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const ref = useRef(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(([entry]) => {
+      setIsInView(entry.isIntersecting);
       if (entry.isIntersecting) {
-        setIsInView(true);
-        // Once it's been seen, we can stop observing
-        observer.unobserve(entry.target);
+        // Calculate how far into view the element is
+        const progress = entry.intersectionRatio;
+        // Apply spring-like easing
+        const springProgress = 1 - Math.cos((progress * Math.PI) / 2);
+        setScrollProgress(springProgress);
       }
     }, {
-      threshold: options.threshold || 0.1,
+      // Create 50 thresholds for ultra-smooth progress
+      threshold: Array.from({ length: 50 }, (_, i) => i / 49),
       rootMargin: options.rootMargin || '0px'
     });
 
@@ -27,7 +32,7 @@ export default function useInView(options = {}) {
         observer.unobserve(currentRef);
       }
     };
-  }, [options.threshold, options.rootMargin]);
+  }, [options.rootMargin]);
 
-  return [ref, isInView];
+  return [ref, isInView, scrollProgress];
 }
