@@ -1,30 +1,33 @@
 'use client';
-import { useEffect, useRef } from 'react';
+import useInView from '@/hooks/useInView';
 
-export default function GlassContainer({ 
-  children, 
-  className = "", 
+export default function GlassContainer({
+  children,
+  className = "",
   direction = "left",
-  delay = 0 
+  delay = 0
 }) {
-  const containerRef = useRef(null);
+  const [ref, isInView] = useInView({
+    threshold: 0.2,
+    rootMargin: '-50px'
+  });
 
-  useEffect(() => {
-    const container = containerRef.current;
-    if (container) {
-      container.style.opacity = '0';
-      container.style.transform = `translateX(${direction === 'left' ? '-50px' : '50px'})`;
-      
-      setTimeout(() => {
-        container.style.opacity = '1';
-        container.style.transform = 'translateX(0)';
-      }, delay);
+  const getInitialTransform = () => {
+    switch (direction) {
+      case 'left':
+        return 'translateX(-50px)';
+      case 'right':
+        return 'translateX(50px)';
+      case 'up':
+        return 'translateY(30px)';
+      default:
+        return 'translateY(30px)';
     }
-  }, [direction, delay]);
+  };
 
   return (
     <div
-      ref={containerRef}
+      ref={ref}
       className={`
         bg-white/[0.03] backdrop-blur-sm
         border border-white/10
@@ -36,8 +39,13 @@ export default function GlassContainer({
         hover:shadow-xl
         hover:shadow-black/10
         hover:scale-[1.02]
+        opacity-0
+        ${isInView ? 'opacity-100 translate-x-0 translate-y-0' : `${getInitialTransform()}`}
         ${className}
       `}
+      style={{
+        transitionDelay: `${delay}ms`
+      }}
     >
       {children}
     </div>

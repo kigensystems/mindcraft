@@ -37,15 +37,64 @@ html, body {
 
 body {
   color: var(--text-primary);
+  display: block;
+  position: relative;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body {
+  min-height: 100vh;
+  background-color: #000;
+}
+
+.background-wrapper {
+  position: fixed;
+  top: -5vh;
+  left: -5vw;
+  right: -5vw;
+  bottom: -5vh;
+  z-index: -2;
+  background: url('/mindcraft-background.png') center center;
+  background-size: cover;
+  background-attachment: fixed;
+  opacity: 0.9;
+  will-change: transform;
+  transform: scale(calc(1.02 + var(--scroll-scale, 0) * 0.03));
+  transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.background-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
   background: linear-gradient(
     var(--background-primary),
     var(--background-secondary)
-  ),
-  url('/mindcraft-background.png');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  display: block;
+  );
+}
+
+#content-wrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+}
+
+/* Smooth scrolling for the entire page */
+html {
+  scroll-behavior: smooth;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 0.35;
+  }
 }
 
 /* Hero Title Styles */

@@ -1,31 +1,75 @@
+'use client';
+import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import HowItWorks from '@/components/HowItWorks';
+import InstallationGuide from '@/components/InstallationGuide';
+import Footer from '@/components/Footer';
+import AnimatedTitle from '@/components/AnimatedTitle';
 
 export default function Home() {
+  useEffect(() => {
+    const handleScroll = () => {
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      const currentScroll = window.scrollY;
+      const scrollPercentage = Math.min(Math.max(currentScroll / maxScroll, 0), 1);
+      
+      // Apply smooth easing
+      const eased = scrollPercentage * (2 - scrollPercentage); // Quadratic ease-out
+      
+      document.documentElement.style.setProperty('--scroll-scale', eased.toString());
+    };
+
+    // Initial call
+    handleScroll();
+    
+    // Add throttled event listener
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener, { passive: true });
+    return () => window.removeEventListener('scroll', scrollListener);
+  }, []);
+
   return (
-    <main className="w-full min-h-screen flex flex-col">
-      {/* Title Section */}
-      <div className="w-full pt-[150px] pb-[100px]">
-        <div className="container mx-auto px-4 text-center">
-          <div className="relative inline-block">
-            <h1 className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider">
-              <span className="hero-shadow-deep">MINDCRAFT</span>
-              <span className="hero-shadow">MINDCRAFT</span>
-              <span className="hero-main">MINDCRAFT</span>
-            </h1>
+    <>
+      <div className="background-wrapper" />
+      <div className="background-overlay" />
+      <div id="content-wrapper">
+        <main className="w-full flex flex-col">
+          {/* Title Section */}
+          <div className="w-full pt-[150px] pb-[100px]">
+            <div className="container mx-auto px-4 text-center">
+              <AnimatedTitle />
+            </div>
           </div>
-        </div>
-      </div>
 
-      {/* Hero Section with Glass Containers */}
-      <div className="w-full">
-        <HeroSection />
-      </div>
+          {/* Hero Section with Glass Containers */}
+          <div className="w-full">
+            <HeroSection />
+          </div>
 
-      {/* How It Works Section */}
-      <div className="w-full">
-        <HowItWorks />
+          {/* How It Works Section */}
+          <div className="w-full">
+            <HowItWorks />
+          </div>
+
+          {/* Installation Guide Section */}
+          <div className="w-full">
+            <InstallationGuide />
+          </div>
+
+          {/* Footer */}
+          <Footer />
+        </main>
       </div>
-    </main>
+    </>
   );
 }
