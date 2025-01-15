@@ -1,4 +1,5 @@
 import HeroSection from '@/components/HeroSection';
+import HowItWorks from '@/components/HowItWorks';
 
 export default function Home() {
   return (
@@ -19,6 +20,11 @@ export default function Home() {
       {/* Hero Section with Glass Containers */}
       <div className="w-full">
         <HeroSection />
+      </div>
+
+      {/* How It Works Section */}
+      <div className="w-full">
+        <HowItWorks />
       </div>
     </main>
   );
