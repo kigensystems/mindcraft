@@ -48,14 +48,14 @@ export default function Home() {
           {/* Content wrapper with padding for footer */}
           <div className="flex-grow pb-0"> {/* Added significant bottom padding */}
             {/* Title Section */}
-            <div className="w-full pt-[150px]">
+            <div className="w-full pt-[100px]">
               <div className="container mx-auto px-4 text-center">
                 <AnimatedTitle />
               </div>
             </div>
 
             {/* Hero Section with Glass Containers */}
-            <div className="w-full mb-24">
+            <div className="w-full mb-16">
               <HeroSection />
             </div>
 

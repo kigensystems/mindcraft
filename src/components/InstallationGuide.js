@@ -64,16 +64,16 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <section id="installationguide" className="pt-8">
-      <div className="container mx-auto px-4">
+    <section id="installationguide" className="pt-2 -mt-4">
+      <div className="container mx-auto px-3 md:px-4">
         <div ref={ref}>
           <InstallationGlassContainer
             direction="up"
             delay={0}
-            className="max-w-4xl mx-auto p-10 md:p-12"
+            className="max-w-4xl mx-auto p-6 md:p-8"
           >
             <h2
-              className="text-4xl md:text-5xl text-center mb-16 text-white/90 font-['MinecrafterRegular']"
+              className="text-2xl md:text-3xl lg:text-4xl text-center mb-10 text-white/90 font-['MinecrafterRegular']"
               style={{
                 transform: `translateY(${isInView ? '0' : '20px'})`,
                 opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
@@ -101,7 +101,7 @@ export default function InstallationGuide() {
                     <div>
                       <div className="flex gap-2 mb-2">
                         <div
-                          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 self-center"
+                          className="w-5 h-5 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 self-center text-sm"
                           style={{
                             transform: isInView ? 'scale(1)' : 'scale(0)',
                             transition: 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)',
@@ -110,12 +110,12 @@ export default function InstallationGuide() {
                         >
                           <span className="text-white/90">{step.number}</span>
                         </div>
-                        <h3 className="text-xl font-semibold text-white/90">{step.title}</h3>
+                        <h3 className="text-base md:text-lg font-semibold text-white/90">{step.title}</h3>
                       </div>
                       {step.number === 5 ? (
                         step.description.split('\n\n').map((text, idx) => (
                           <div key={idx} className="flex items-start gap-2 mb-4 last:mb-0">
-                            <div className="w-4 h-4 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-1">
+                            <div className="w-3.5 h-3.5 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-1">
                               <span className="text-white/70 text-xs">{idx + 1}</span>
                             </div>
                             <p className="text-base text-white/80 flex-1">
@@ -124,7 +124,7 @@ export default function InstallationGuide() {
                           </div>
                         ))
                       ) : (
-                        <p className="text-base text-white/80">
+                        <p className="text-sm md:text-base text-white/80">
                           {step.description}
                           {step.link && (
                             <a

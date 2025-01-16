@@ -7,12 +7,12 @@ export default function AnimatedTitle() {
   });
 
   const getTransform = () => {
-    if (!isInView) return 'translateY(-50px) scale(0.8) rotateX(20deg)';
+    if (!isInView) return 'translateY(-30px) scale(0.8) rotateX(15deg)';
     
     const progress = Math.min(Math.max(scrollProgress, 0), 1);
     const easeProgress = progress * (2 - progress); // Quadratic ease-out
     
-    const translateY = -50 + (50 * easeProgress);
+    const translateY = -30 + (30 * easeProgress);
     const scale = 0.8 + (0.2 * easeProgress);
     const rotateX = 20 - (20 * easeProgress);
     
@@ -38,7 +38,7 @@ export default function AnimatedTitle() {
         }}
       >
         <h1 
-          className="minecraft-title text-7xl sm:text-8xl md:text-9xl tracking-wider"
+          className="minecraft-title text-6xl sm:text-7xl md:text-8xl tracking-wider"
           style={titleStyle}
         >
           <span 
@@ -62,16 +62,12 @@ export default function AnimatedTitle() {
         </h1>
       </div>
       <h2 
-        className="text-xl md:text-2xl lg:text-3xl text-white/90 -mt-4 font-['MinecrafterRegular'] tracking-[0.2em] uppercase"
+        className="text-lg md:text-xl lg:text-2xl text-white/90 font-['MinecrafterRegular'] tracking-[0.2em] uppercase relative -mt-8"
         style={{
           opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
-          transform: `translateY(${isInView ? "0" : "20px"})`,
           transition: "all 600ms ease-out",
           transitionDelay: "200ms",
-          letterSpacing: '0.2em',
           textShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
-          maxWidth: '800px',
-          margin: '0 auto',
         }}
       >
         Where Minecraft Meets Intelligence

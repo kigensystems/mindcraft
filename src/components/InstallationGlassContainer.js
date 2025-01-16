@@ -11,7 +11,7 @@ export default function InstallationGlassContainer({
     <GlassContainer
       direction={direction}
       delay={delay}
-      className={`${className} mb-64 pb-20`} // Increased bottom margin and padding even more
+      className={`${className} mb-32 pb-12`} // Reduced bottom margin and padding to match new scale
     >
       {children}
     </GlassContainer>

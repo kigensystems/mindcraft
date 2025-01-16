@@ -49,9 +49,9 @@ export default function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4">
-        <div className="flex items-center justify-center h-28">
+        <div className="flex items-center justify-center h-20">
           {/* Navigation Links */}
-          <div className="hidden md:flex items-center justify-center space-x-16">
+          <div className="hidden md:flex items-center justify-center space-x-12">
             {[
               ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
               ['Features', 'features', (e) => handleSectionClick(e, 'features')],
@@ -61,7 +61,7 @@ export default function Navbar() {
               <Link
                 key={name}
                 href={url}
-                className="nav-link text-base"
+                className="nav-link text-sm md:text-base"
                 onClick={handler}
                 target={url.startsWith('http') ? '_blank' : undefined}
                 rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
@@ -109,7 +109,7 @@ isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 pointer-events-no
     <Link
       key={name}
       href={url}
-      className="nav-link text-base block py-2"
+      className="nav-link text-sm md:text-base block py-2"
       onClick={(e) => {
         setIsMobileMenuOpen(false);
         if (handler) handler(e);

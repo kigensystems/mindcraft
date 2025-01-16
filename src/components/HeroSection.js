@@ -8,14 +8,14 @@ export default function HeroSection() {
   });
 
   return (
-    <div className="w-full bg-transparent pt-32">
+    <div className="w-full bg-transparent pt-8">
       <div className="container mx-auto px-4">
-        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
           {/* Image Container */}
           <GlassContainer
             direction="left"
             delay={0}
-            className="min-h-[500px] flex items-center justify-center p-12"
+            className="!min-h-[200px] md:!min-h-[250px] flex items-center justify-center !p-3 md:!p-4 !scale-75"
           >
             <div
               className={`w-full h-full ${isInView ? "steve-3d-wrapper" : ""}`}
@@ -40,10 +40,10 @@ export default function HeroSection() {
           <GlassContainer
             direction="right"
             delay={0}
-            className="flex flex-col justify-center min-h-[500px] p-12 text-center"
+            className="flex flex-col justify-center !min-h-[200px] md:!min-h-[250px] !p-3 md:!p-4 text-center !scale-75"
           >
             <h2
-              className="text-3xl md:text-4xl font-bold mb-8 text-white/90 mx-auto max-w-2xl"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-white/90 mx-auto max-w-3xl px-6 tracking-wider"
               style={{
                 transform: `translateX(${isInView ? "0" : "20%"})`,
                 opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
@@ -52,9 +52,9 @@ export default function HeroSection() {
             >
               Build, Create, Explore Together
             </h2>
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               <p
-                className="text-base md:text-lg text-white/80 leading-relaxed mx-auto max-w-2xl"
+                className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed tracking-wide mx-auto max-w-3xl px-6"
                 style={{
                   transform: `translateX(${isInView ? "0" : "20%"})`,
                   opacity: isInView ? Math.min((scrollProgress - 0.1) * 2, 1) : 0,
@@ -67,7 +67,7 @@ export default function HeroSection() {
                 agents become real teammates in your Minecraft world.
               </p>
               <p
-                className="text-base md:text-lg text-white/80 leading-relaxed mx-auto max-w-2xl"
+                className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed tracking-wide mx-auto max-w-3xl px-6"
                 style={{
                   transform: `translateX(${isInView ? "0" : "20%"})`,
                   opacity: isInView ? Math.min((scrollProgress - 0.1) * 2, 1) : 0,
@@ -80,7 +80,7 @@ export default function HeroSection() {
                 them, learn from every interaction, and collaborate with you.
               </p>
               <p
-                className="text-base md:text-lg text-white/80 leading-relaxed mx-auto max-w-2xl"
+                className="text-lg md:text-xl lg:text-2xl text-white/80 leading-relaxed tracking-wide mx-auto max-w-3xl px-6"
                 style={{
                   transform: `translateX(${isInView ? "0" : "20%"})`,
                   opacity: isInView ? Math.min((scrollProgress - 0.1) * 2, 1) : 0,

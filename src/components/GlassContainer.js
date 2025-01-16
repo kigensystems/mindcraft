@@ -1,11 +1,12 @@
 'use client';
 import useInView from '@/hooks/useInView';
 
-export default function GlassContainer({ 
-  children, 
-  className = "", 
+export default function GlassContainer({
+  children,
+  className = "",
   direction = "left",
-  delay = 0 
+  delay = 0,
+  disableHover = false
 }) {
   const [ref, isInView, scrollProgress] = useInView({
     rootMargin: '0px'
@@ -38,18 +39,21 @@ export default function GlassContainer({
     <div
       ref={ref}
       className={`
-        bg-gradient-to-b from-white/[0.04] to-white/[0.02]
-        backdrop-blur-sm
-        border-2 border-white/15
-        rounded-xl
-        shadow-[0_0.5rem_2rem_-0.625rem_rgba(0,0,0,0.2)]
-        transition-all
-        hover:bg-gradient-to-b hover:from-white/[0.07] hover:to-white/[0.03]
-        hover:border-white/40
-        hover:shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)]
-        hover:backdrop-blur-md
-        hover:scale-[1.02]
-        hover:border-opacity-100
+      bg-gradient-to-b from-white/[0.04] to-white/[0.02]
+      backdrop-blur-sm
+      border-2 border-white/15
+      rounded-xl
+      shadow-[0_0.5rem_2rem_-0.625rem_rgba(0,0,0,0.2)]
+      transition-all
+      transform scale-[0.4] md:scale-[0.45] lg:scale-[0.5] xl:scale-[0.55] 2xl:scale-[0.6]
+        ${!disableHover ? `
+          hover:bg-gradient-to-b hover:from-white/[0.07] hover:to-white/[0.03]
+          hover:border-white/40
+          hover:shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)]
+          hover:backdrop-blur-md
+          hover:scale-[1.02]
+          hover:border-opacity-100
+        ` : ''}
         ring-1 ring-white/5
         ring-offset-0
         ${className}
