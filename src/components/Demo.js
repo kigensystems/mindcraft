@@ -8,8 +8,8 @@ export default function Demo() {
   });
 
   return (
-    <section id="demo" className="w-full pt-20 pb-10" ref={ref}>
-      <div className="container mx-auto px-4">
+    <section id="demo" className="w-full py-8" ref={ref}>
+      <div className="container mx-auto px-4 md:px-6">
         <GlassContainer
           direction="up"
           delay={0}

@@ -6,6 +6,7 @@ import { useRouter, usePathname } from 'next/navigation';
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
 
@@ -43,7 +44,7 @@ export default function Navbar() {
 
   return (
     <nav 
-      className={`fixed w-full z-[100] transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         isScrolled ? 'nav-blur' : 'bg-transparent'
       }`}
     >
@@ -69,19 +70,61 @@ export default function Navbar() {
               </Link>
             ))}
           </div>
+{/* Mobile menu button */}
+<div className="md:hidden absolute right-4">
+  <button
+    className="nav-link p-2"
+    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+    aria-expanded={isMobileMenuOpen}
+  >
+    <span className="sr-only">Open menu</span>
+    <div className="w-6 h-0.5 bg-white mb-1.5 transition-transform duration-200"
+      style={{ transform: isMobileMenuOpen ? 'rotate(45deg) translate(2px, 6px)' : 'none' }}
+    />
+    <div className="w-6 h-0.5 bg-white mb-1.5 transition-opacity duration-200"
+      style={{ opacity: isMobileMenuOpen ? 0 : 1 }}
+    />
+    <div className="w-6 h-0.5 bg-white transition-transform duration-200"
+      style={{ transform: isMobileMenuOpen ? 'rotate(-45deg) translate(2px, -6px)' : 'none' }}
+    />
+  </button>
+</div>
+</div>
+</div>
 
-          {/* Mobile menu button - positioned absolutely on the right */}
-          <div className="md:hidden absolute right-4">
-            <button className="nav-link p-2">
-              <span className="sr-only">Open menu</span>
-              <div className="w-6 h-0.5 bg-white mb-1.5" />
-              <div className="w-6 h-0.5 bg-white mb-1.5" />
-              <div className="w-6 h-0.5 bg-white" />
-            </button>
-          </div>
-        </div>
-      </div>
+{/* Mobile Menu */}
+<div
+className={`md:hidden nav-blur border-t border-white/10 transition-all duration-300 ${
+isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 pointer-events-none'
+}`}
+>
+<div className="container mx-auto px-4 py-4">
+<div className="flex flex-col space-y-4">
+  {[
+    ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
+    ['Features', 'features', (e) => handleSectionClick(e, 'features')],
+    ['Support us', 'https://pump.fun/board'],
+    ['GitHub', 'https://github.com/kolbytn/mindcraft'],
+  ].map(([name, url, handler]) => (
+    <Link
+      key={name}
+      href={url}
+      className="nav-link text-base block py-2"
+      onClick={(e) => {
+        setIsMobileMenuOpen(false);
+        if (handler) handler(e);
+      }}
+      target={url.startsWith('http') ? '_blank' : undefined}
+      rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
+    >
+      {name}
+    </Link>
+  ))}
+</div>
+</div>
+</div>
 
+{/* Bottom Border */}
       {/* Bottom Border */}
       <div className="absolute bottom-0 left-0 w-full">
         <div className="container mx-auto px-4">

@@ -64,7 +64,7 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <section id="installationguide" className="pt-10">
+    <section id="installationguide" className="pt-8">
       <div className="container mx-auto px-4">
         <div ref={ref}>
           <InstallationGlassContainer

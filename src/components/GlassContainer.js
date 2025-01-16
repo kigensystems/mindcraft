@@ -8,11 +8,11 @@ export default function GlassContainer({
   delay = 0 
 }) {
   const [ref, isInView, scrollProgress] = useInView({
-    rootMargin: '-50px'
+    rootMargin: '0px'
   });
 
   const getTransform = () => {
-    if (!isInView) return 'translateY(25%) scale(0.9) rotateX(10deg)';
+    if (!isInView) return 'translateY(10%) scale(0.98)';
     
     const progress = Math.min(Math.max(scrollProgress, 0), 1);
     
@@ -25,19 +25,12 @@ export default function GlassContainer({
     const overshoot = Math.sin(progress * Math.PI * 2) * 0.05;
     const scale = 0.9 + (0.1 * easeProgress) + (overshoot * (1 - progress));
     
-    // More dramatic transforms
-    const translateY = 25 - (25 * springProgress); // Increased travel distance
-    const translateZ = overshoot * 10; // More pronounced depth
-    const rotateX = 10 * (1 - springProgress); // Added rotation
-    const skewY = overshoot * 2; // Subtle skew for dynamic feel
+    // Subtle transforms
+    const translateY = 10 - (10 * springProgress); // Reduced travel distance
     
     return `
       translateY(${translateY}%)
       scale(${scale})
-      perspective(100%)
-      rotateX(${rotateX}deg)
-      translateZ(${translateZ}%)
-      skewY(${skewY}deg)
     `;
   };
 
