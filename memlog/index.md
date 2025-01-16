@@ -57,6 +57,14 @@ Mindcraft is a Next.js-based educational platform that combines Minecraft's visu
 - Troubleshooting
 - External dependencies
 
+### 8. [Changes Log](./changes.md)
+- Navigation updates
+- Footer redesign
+- Route handlers
+- Color system changes
+- General improvements
+- Current status
+
 ## Key Technical Characteristics
 
 ### Architecture
@@ -122,4 +130,4 @@ npm run build  # Create production build
 npm start      # Run production server
 ```
 
-Last Updated: 1/15/2025, 6:31 PM (America/Vancouver)
+Last Updated: 1/15/2025, 7:18 PM (America/Vancouver)
