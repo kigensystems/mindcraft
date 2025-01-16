@@ -1,23 +1,61 @@
 'use client';
-import useInView from '@/hooks/useInView';
+import { useEffect, useRef } from 'react';
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function AnimatedTitle() {
-  const [ref, isInView, scrollProgress] = useInView({
-    threshold: 0.1
-  });
+  const containerRef = useRef(null);
+  const titleRef = useRef(null);
 
-  const getTransform = () => {
-    if (!isInView) return 'translateY(-30px) scale(0.8) rotateX(15deg)';
-    
-    const progress = Math.min(Math.max(scrollProgress, 0), 1);
-    const easeProgress = progress * (2 - progress); // Quadratic ease-out
-    
-    const translateY = -30 + (30 * easeProgress);
-    const scale = 0.8 + (0.2 * easeProgress);
-    const rotateX = 20 - (20 * easeProgress);
-    
-    return `translateY(${translateY}px) scale(${scale}) rotateX(${rotateX}deg)`;
-  };
+  useEffect(() => {
+    const container = containerRef.current;
+    const title = titleRef.current;
+    if (!container || !title) return;
+
+    // Initial state
+    gsap.set(container, {
+      rotateX: 15,
+      scale: 0.8,
+      y: -30,
+      opacity: 0
+    });
+
+    // Create animation timeline
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: container,
+        start: 'top 75%',
+        end: 'top 25%',
+        scrub: 1,
+      }
+    });
+
+    // Animate container
+    tl.to(container, {
+      rotateX: 0,
+      scale: 1,
+      y: 0,
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power2.out'
+    });
+
+    // Add floating animation
+    gsap.to(container, {
+      y: '-=20',
+      duration: 3,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut'
+    });
+
+    return () => {
+      tl.kill();
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
+  }, []);
 
   const titleStyle = {
     fontFamily: "'MinecrafterRegular', Arial, sans-serif",
@@ -25,19 +63,17 @@ export default function AnimatedTitle() {
   };
 
   return (
-    <div className="text-center">
+    <div className="text-center pt-12 md:pt-16 lg:pt-20">
       <div
-        ref={ref}
+        ref={containerRef}
         className="relative inline-block perspective-1000"
         style={{
-          transform: getTransform(),
-          opacity: isInView ? Math.min(scrollProgress * 1.5, 1) : 0,
-          transition: 'opacity 300ms ease-out',
           transformStyle: 'preserve-3d',
           transformOrigin: 'center bottom'
         }}
       >
         <h1 
+          ref={titleRef}
           className="minecraft-title text-6xl sm:text-7xl md:text-8xl tracking-wider"
           style={titleStyle}
         >
@@ -62,12 +98,10 @@ export default function AnimatedTitle() {
         </h1>
       </div>
       <h2 
-        className="text-lg md:text-xl lg:text-2xl text-white/90 font-['MinecrafterRegular'] tracking-[0.2em] uppercase relative -mt-8"
+        className="text-lg md:text-xl lg:text-2xl text-white/90 font-['MinecrafterRegular'] tracking-[0.2em] uppercase absolute left-1/2 -translate-x-1/2 top-[75%]"
         style={{
-          opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
-          transition: "all 600ms ease-out",
-          transitionDelay: "200ms",
           textShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
+          width: '100%'
         }}
       >
         Where Minecraft Meets Intelligence

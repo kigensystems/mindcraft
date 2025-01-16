@@ -8,7 +8,7 @@ export default function HeroSection() {
   });
 
   return (
-    <div className="w-full bg-transparent pt-8">
+    <div className="w-full bg-transparent pt-16 md:pt-20">
       <div className="container mx-auto px-4">
         <div ref={ref} className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
           {/* Image Container */}
