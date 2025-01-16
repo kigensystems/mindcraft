@@ -1,9 +1,13 @@
 'use client';
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   // Handle scroll effect
   useEffect(() => {
@@ -13,6 +17,29 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Handle smooth scroll to sections
+  const handleSectionClick = (e, sectionId) => {
+    e.preventDefault();
+    if (isNavigating) return;
+
+    setIsNavigating(true);
+    
+    // If we're already on the home page, just scroll
+    if (pathname === '/') {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+        setIsNavigating(false);
+      }
+    } else {
+      // Otherwise, navigate to the section route
+      router.push(`/${sectionId}`);
+    }
+
+    // Reset navigation state after a delay
+    setTimeout(() => setIsNavigating(false), 1000);
+  };
 
   return (
     <nav 
@@ -25,15 +52,18 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center justify-center space-x-16">
             {[
-              ['Agents', '/agents'],
-              ['Documentation', '/docs'],
-              ['Community', '/community'],
-              ['GitHub', 'https://github.com/yourusername/mindcraft'],
-            ].map(([name, url]) => (
+              ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
+              ['Features', 'features', (e) => handleSectionClick(e, 'features')],
+              ['Support us', 'https://pump.fun/board'],
+              ['GitHub', 'https://github.com/kolbytn/mindcraft'],
+            ].map(([name, url, handler]) => (
               <Link
                 key={name}
                 href={url}
                 className="nav-link text-base"
+                onClick={handler}
+                target={url.startsWith('http') ? '_blank' : undefined}
+                rel={url.startsWith('http') ? 'noopener noreferrer' : undefined}
               >
                 {name}
               </Link>

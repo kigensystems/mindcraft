@@ -65,11 +65,11 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <div className="w-full bg-transparent py-20">
+    <div id="installationguide" className="w-full bg-transparent py-20">
       <div className="container mx-auto px-4">
         {/* Divider */}
         <div className="w-full max-w-4xl mx-auto mb-20">
-          <div 
+          <div
             className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
             style={{
               transform: `scaleX(${isInView ? Math.min(scrollProgress * 1.5, 1) : 0})`,
@@ -81,12 +81,12 @@ export default function InstallationGuide() {
         </div>
         
         <div ref={ref}>
-          <GlassContainer 
-            direction="up" 
+          <GlassContainer
+            direction="up"
             delay={0}
             className="max-w-4xl mx-auto p-12"
           >
-            <h2 
+            <h2
               className="text-3xl md:text-4xl font-bold mb-8 text-center text-white/90"
               style={{
                 transform: `translateY(${isInView ? '0' : '20%'})`,
@@ -102,7 +102,7 @@ export default function InstallationGuide() {
                 const stepProgress = Math.max(0, Math.min(scrollProgress * 3 - (index * 0.05), 1));
                 
                 return (
-                  <div 
+                  <div
                     key={step.number}
                     className={`relative pl-8 ${step.number === 5 ? 'space-y-4' : ''}`}
                     style={{
@@ -112,39 +112,48 @@ export default function InstallationGuide() {
                       transitionDelay: `${index * 50}ms`
                     }}
                   >
-                    <div 
-                      className="absolute left-0 top-0 w-6 h-6 rounded-full bg-white/10 flex items-center justify-center"
-                      style={{
-                        transform: isInView ? 'scale(1)' : 'scale(0)',
-                        transition: 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)',
-                        transitionDelay: `${index * 50}ms`
-                      }}
-                    >
-                      <span className="text-white/90">{step.number}</span>
-                    </div>
-                    <h3 className="text-xl font-semibold mb-2 text-white/90">{step.title}</h3>
-                    {step.number === 5 ? (
-                      step.description.split('\n\n').map((text, idx) => (
-                        <p key={idx} className="text-base text-white/80 mb-4 last:mb-0">
-                          {text}
+                    <div>
+                      <div className="flex gap-2 mb-2">
+                        <div
+                          className="w-6 h-6 rounded-full bg-white/10 flex items-center justify-center flex-shrink-0 self-center"
+                          style={{
+                            transform: isInView ? 'scale(1)' : 'scale(0)',
+                            transition: 'transform 600ms cubic-bezier(0.4, 0, 0.2, 1)',
+                            transitionDelay: `${index * 50}ms`
+                          }}
+                        >
+                          <span className="text-white/90">{step.number}</span>
+                        </div>
+                        <h3 className="text-xl font-semibold text-white/90">{step.title}</h3>
+                      </div>
+                      {step.number === 5 ? (
+                        step.description.split('\n\n').map((text, idx) => (
+                          <div key={idx} className="flex items-start gap-2 mb-4 last:mb-0">
+                            <div className="w-4 h-4 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-1">
+                              <span className="text-white/70 text-xs">{idx + 1}</span>
+                            </div>
+                            <p className="text-base text-white/80 flex-1">
+                              {text.replace(/^\d+\.\d+\.\s+/, '')}
+                            </p>
+                          </div>
+                        ))
+                      ) : (
+                        <p className="text-base text-white/80">
+                          {step.description}
+                          {step.link && (
+                            <a
+                              href={step.link.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-[#528a67] hover:text-[#528a67]/80 underline transition-colors duration-200"
+                            >
+                              {step.link.text}
+                            </a>
+                          )}
+                          {step.description2}
                         </p>
-                      ))
-                    ) : (
-                      <p className="text-base text-white/80">
-                        {step.description}
-                        {step.link && (
-                          <a
-                            href={step.link.url}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="text-[#88C057] hover:text-[#a3d578] underline transition-colors duration-200"
-                          >
-                            {step.link.text}
-                          </a>
-                        )}
-                        {step.description2}
-                      </p>
-                    )}
+                      )}
+                    </div>
                   </div>
                 );
               })}

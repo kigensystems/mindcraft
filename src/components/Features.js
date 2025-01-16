@@ -31,7 +31,7 @@ export default function Features() {
   ];
 
   return (
-    <section className="py-20" ref={ref}>
+    <section id="features" className="py-20" ref={ref}>
       <div className="container mx-auto">
         <GlassContainer
           direction="up"
