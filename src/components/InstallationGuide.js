@@ -16,7 +16,7 @@ export default function InstallationGuide() {
       description: "Download Minecraft Java Edition v1.20.4 from the official website: ",
       link: {
         url: "https://www.minecraft.net/en-us/article/minecraft-java-edition-1-20-4",
-        text: "Click here to download Minecraft v1.20.4"
+        text: "Minecraft v1.20.4"
       }
     },
     {
@@ -25,7 +25,7 @@ export default function InstallationGuide() {
       description: "Download and install Node.js from the official website: ",
       link: {
         url: "https://nodejs.org/en",
-        text: "Click here to download Node.js"
+        text: "Node.js"
       }
     },
     {
@@ -34,7 +34,7 @@ export default function InstallationGuide() {
       description: "The full list of supported models is available on our Github. We recommend ",
       link: {
         url: "https://openai.com/index/openai-api/",
-        text: "OpenAI."
+        text: "OpenAI"
       }
     },
     {
@@ -45,23 +45,23 @@ export default function InstallationGuide() {
         url: "https://github.com/kolbytn/mindcraft",
         text: "here"
       },
-      description2: ", clone or download the repository."
+      description2: ", clone or download the repository"
     },
     {
       number: 5,
       title: "Setup and Configuration",
       description: [
-        "5.1. Rename keys.example.json to keys.json and add your API key (you can edit this file with any text editor)",
-        "5.2. Open andy.json and set your desired model (keys.json: \"OPENAI_API_KEY\", andy.json: \"gpt-4o-mini\")",
-        "5.3. Open the \"mindcraft\" folder in terminal (right click > \"new terminal at folder\" or use \"cd /path/to/your/folder\") and run npm install",
-        "5.4. Start a minecraft world and open it to LAN on port 55916",
+        "5.1. Rename keys.example.json to keys.json and add your API key \"OPENAI_API_KEY\"",  
+        "5.2. Open andy.json and set your desired model \"gpt-4o-mini\"",
+        "5.3. Open the \"Mindcraft\" folder in terminal (right click > \"new terminal at folder\" or use \"cd /path/to/your/folder\") and run \"npm install\"",
+        "5.4. Start a Minecraft world and open it to LAN on port 55916",
         "5.5. Return to your terminal and type \"node main.js\" from the installed directory"
       ].join("\n\n")
     },
     {
       number: 6,
       title: "Launch & Play",
-      description: "Start Minecraft with the Forge profile and enjoy your enhanced AI experience"
+      description: "Start Minecraft and enjoy your enhanced AI experience"
     }
   ];
 

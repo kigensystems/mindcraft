@@ -43,7 +43,7 @@ export default function Features() {
         >
           <h2
             ref={titleRef}
-            className="text-2xl md:text-3xl 2xl:text-4xl text-center mb-6 text-white/90 font-['MinecrafterRegular']"
+            className="text-2xl md:text-3xl 2xl:text-4xl text-center mb-6 mt-4 text-white/90 font-['MinecrafterRegular']"
           >
             Core Capabilities
           </h2>

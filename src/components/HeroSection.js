@@ -43,7 +43,7 @@ export default function HeroSection() {
             className="flex flex-col justify-center !min-h-[200px] md:!min-h-[250px] !p-3 md:!p-4 text-center !scale-75"
           >
             <h2
-              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 text-white/90 mx-auto max-w-3xl px-6 tracking-wider"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold mb-6 md:mb-8 mt-4 text-white/90 mx-auto max-w-3xl px-6 tracking-wider"
               style={{
                 transform: `translateX(${isInView ? "0" : "20%"})`,
                 opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
