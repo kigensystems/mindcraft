@@ -23,7 +23,7 @@ export default function Footer() {
   };
 
   return (
-    <footer ref={ref} className="w-full nav-blur fixed bottom-0 left-0 z-10">
+    <footer ref={ref} className="w-full nav-blur relative mt-0">
       <div className="h-28">
         <div className="container mx-auto px-4 h-full">
           <div className="max-w-4xl mx-auto h-full flex items-center justify-between">

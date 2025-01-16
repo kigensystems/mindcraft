@@ -46,7 +46,7 @@ export default function Home() {
       <div id="content-wrapper">
         <main className="w-full flex flex-col min-h-screen">
           {/* Content wrapper with padding for footer */}
-          <div className="flex-grow pb-28">
+          <div className="flex-grow pb-48"> {/* Added significant bottom padding */}
             {/* Title Section */}
             <div className="w-full pt-[150px]">
               <div className="container mx-auto px-4 text-center">
@@ -74,7 +74,6 @@ export default function Home() {
               <InstallationGuide />
             </div>
           </div>
-
           {/* Footer */}
           <Footer />
         </main>

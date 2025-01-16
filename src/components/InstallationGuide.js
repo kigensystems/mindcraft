@@ -1,5 +1,5 @@
 'use client';
-import GlassContainer from './GlassContainer';
+import InstallationGlassContainer from './InstallationGlassContainer';
 import useInView from '@/hooks/useInView';
 
 export default function InstallationGuide() {
@@ -64,10 +64,10 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <section id="installationguide" className="pt-10 pb-20">
+    <section id="installationguide" className="pt-10">
       <div className="container mx-auto px-4">
         <div ref={ref}>
-          <GlassContainer
+          <InstallationGlassContainer
             direction="up"
             delay={0}
             className="max-w-4xl mx-auto p-10 md:p-12"
@@ -144,7 +144,7 @@ export default function InstallationGuide() {
                 );
               })}
             </div>
-          </GlassContainer>
+          </InstallationGlassContainer>
         </div>
       </div>
     </section>
