@@ -27,7 +27,7 @@
   --text-secondary: #E0E0E0;
   --background-primary: rgba(0, 0, 0, 0.55);
   --background-secondary: rgba(47, 54, 64, 0.45);
-  --hover-green: #528a67;
+  --hover-green: #6ee7b7;
 }
 
 html, body {
@@ -263,17 +263,17 @@ strong, b {
   transform: scaleX(0);
   transform-origin: right;
   transition: all 0.3s ease;
-  box-shadow: 0 0 10px rgba(82, 138, 103, 0.3);
+  box-shadow: 0 0 10px rgba(110, 231, 183, 0.3);
 }
-
 .nav-link:hover {
   color: var(--hover-green);
+  text-shadow: 0 0 10px rgba(110, 231, 183, 0.5);
 }
 
 .nav-link:hover::after {
   transform: scaleX(1);
   transform-origin: left;
-  box-shadow: 0 0 15px rgba(82, 138, 103, 0.4);
+  box-shadow: 0 0 15px rgba(110, 231, 183, 0.4);
 }
 
 /* Container */
@@ -423,6 +423,16 @@ button,
 .nav-link,
 .minecraft-style {
   font-family: 'MinecrafterRegular', Arial, sans-serif;
+}
+
+/* Installation Guide Links */
+.installation-link {
+  text-shadow: 0 0 10px rgba(110, 231, 183, 0.5);
+  transition: all 0.2s ease;
+}
+
+.installation-link:hover {
+  text-shadow: 0 0 15px rgba(110, 231, 183, 0.7);
 }
 
 /* Smooth Scroll */

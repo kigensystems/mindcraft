@@ -39,7 +39,7 @@ export default function GlassContainer({
     <div
       ref={ref}
       className={`
-      bg-gradient-to-b from-white/[0.04] to-white/[0.02]
+      bg-gradient-to-b from-white/[0.08] to-white/[0.04]
       backdrop-blur-sm
       border-2 border-white/15
       rounded-xl
@@ -47,7 +47,7 @@ export default function GlassContainer({
       transition-all
       transform scale-[0.4] md:scale-[0.45] lg:scale-[0.5] xl:scale-[0.55] 2xl:scale-[0.6]
         ${!disableHover ? `
-          hover:bg-gradient-to-b hover:from-white/[0.07] hover:to-white/[0.03]
+          hover:bg-gradient-to-b hover:from-white/[0.14] hover:to-white/[0.06]
           hover:border-white/40
           hover:shadow-[0_1.25rem_2.5rem_-0.75rem_rgba(0,0,0,0.3)]
           hover:backdrop-blur-md
