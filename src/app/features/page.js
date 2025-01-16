@@ -1,8 +1,8 @@
 'use client';
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export default function FeaturesPage() {
+function FeaturesContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const hasScrolled = searchParams.get('scrolled');
@@ -25,4 +25,12 @@ export default function FeaturesPage() {
 
   // Return null as this is just a routing handler
   return null;
+}
+
+export default function FeaturesPage() {
+  return (
+    <Suspense fallback={null}>
+      <FeaturesContent />
+    </Suspense>
+  );
 }
