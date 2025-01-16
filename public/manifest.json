@@ -1,0 +1,16 @@
+{
+  "name": "Mindcraft - AI Agents for Minecraft",
+  "short_name": "Mindcraft",
+  "description": "Open-source project implementing AI agents that can interact with players and the Minecraft environment.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "icons": [
+    {
+      "src": "/favicon_SFD_icon.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
