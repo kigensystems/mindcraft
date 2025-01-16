@@ -4,8 +4,7 @@ import useInView from '@/hooks/useInView';
 
 export default function InstallationGuide() {
   const [ref, isInView, scrollProgress] = useInView({
-    rootMargin: '-5%',
-    threshold: 0.1
+    rootMargin: '-10%',
   });
 
   const steps = [
@@ -65,31 +64,18 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <div id="installationguide" className="w-full bg-transparent py-20">
+    <section id="installationguide" className="pt-10 pb-20">
       <div className="container mx-auto px-4">
-        {/* Divider */}
-        <div className="w-full max-w-4xl mx-auto mb-20">
-          <div
-            className="h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
-            style={{
-              transform: `scaleX(${isInView ? Math.min(scrollProgress * 1.5, 1) : 0})`,
-              opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
-              transition: 'transform 600ms ease-out, opacity 600ms ease-out',
-              transformOrigin: 'center'
-            }}
-          />
-        </div>
-        
         <div ref={ref}>
           <GlassContainer
             direction="up"
             delay={0}
-            className="max-w-4xl mx-auto p-12"
+            className="max-w-4xl mx-auto p-10 md:p-12"
           >
             <h2
-              className="text-3xl md:text-4xl font-bold mb-8 text-center text-white/90"
+              className="text-4xl md:text-5xl text-center mb-16 text-white/90 font-['MinecrafterRegular']"
               style={{
-                transform: `translateY(${isInView ? '0' : '20%'})`,
+                transform: `translateY(${isInView ? '0' : '20px'})`,
                 opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
                 transition: 'all 600ms ease-out'
               }}
@@ -161,6 +147,6 @@ export default function InstallationGuide() {
           </GlassContainer>
         </div>
       </div>
-    </div>
+    </section>
   );
 }

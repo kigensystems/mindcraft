@@ -44,32 +44,35 @@ export default function Home() {
       <div className="background-wrapper" />
       <div className="background-overlay" />
       <div id="content-wrapper">
-        <main className="w-full flex flex-col">
-          {/* Title Section */}
-          <div className="w-full pt-[150px]">
-            <div className="container mx-auto px-4 text-center">
-              <AnimatedTitle />
+        <main className="w-full flex flex-col min-h-screen">
+          {/* Content wrapper with padding for footer */}
+          <div className="flex-grow pb-28">
+            {/* Title Section */}
+            <div className="w-full pt-[150px]">
+              <div className="container mx-auto px-4 text-center">
+                <AnimatedTitle />
+              </div>
             </div>
-          </div>
 
-          {/* Hero Section with Glass Containers */}
-          <div className="w-full">
-            <HeroSection />
-          </div>
+            {/* Hero Section with Glass Containers */}
+            <div className="w-full">
+              <HeroSection />
+            </div>
 
-          {/* How It Works Section */}
-          <div className="w-full">
-            <Features />
-          </div>
+            {/* How It Works Section */}
+            <div className="w-full">
+              <Features />
+            </div>
 
-          {/* Demo Section */}
-          <div className="w-full">
-            <Demo />
-          </div>
+            {/* Demo Section */}
+            <div className="w-full">
+              <Demo />
+            </div>
 
-          {/* Installation Guide Section */}
-          <div className="w-full">
-            <InstallationGuide />
+            {/* Installation Guide Section */}
+            <div className="w-full">
+              <InstallationGuide />
+            </div>
           </div>
 
           {/* Footer */}

@@ -8,12 +8,12 @@ export default function Demo() {
   });
 
   return (
-    <section id="demo" className="py-20" ref={ref}>
-      <div className="container mx-auto">
+    <section id="demo" className="w-full pt-20 pb-10" ref={ref}>
+      <div className="container mx-auto px-4">
         <GlassContainer
           direction="up"
           delay={0}
-          className="p-10 md:p-12"
+          className="max-w-4xl mx-auto p-10 md:p-12"
         >
           <h2
             className="text-4xl md:text-5xl text-center mb-16 text-white/90 font-['MinecrafterRegular']"
@@ -28,7 +28,7 @@ export default function Demo() {
 
           {/* Video Placeholder */}
           <div
-            className="aspect-video w-full max-w-4xl mx-auto bg-white/5 rounded-lg overflow-hidden"
+            className="aspect-video w-full bg-white/5 rounded-lg overflow-hidden"
             style={{
               opacity: isInView ? Math.min(scrollProgress * 2, 1) : 0,
               transform: `translateY(${isInView ? "0" : "20px"})`,
