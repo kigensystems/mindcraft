@@ -64,7 +64,7 @@ export default function InstallationGuide() {
   ];
 
   return (
-    <section id="installationguide" className="pt-2 -mt-4">
+    <section id="installationguide" className="pt-2 -mt-4 installation-guide">
       <div className="container mx-auto px-3 md:px-4">
         <div ref={ref}>
           <InstallationGlassContainer
@@ -110,7 +110,7 @@ export default function InstallationGuide() {
                         >
                           <span className="text-white/90">{step.number}</span>
                         </div>
-                        <h3 className="text-base md:text-lg font-semibold text-white/90">{step.title}</h3>
+                        <h3 className="text-[1.25rem] font-semibold text-white/90">{step.title}</h3>
                       </div>
                       {step.number === 5 ? (
                         step.description.split('\n\n').map((text, idx) => (
@@ -118,13 +118,13 @@ export default function InstallationGuide() {
                             <div className="w-3.5 h-3.5 rounded-full bg-white/5 flex items-center justify-center flex-shrink-0 mt-1">
                               <span className="text-white/70 text-xs">{idx + 1}</span>
                             </div>
-                            <p className="text-base text-white/80 flex-1">
+                            <p className="text-[1.1rem] text-white/80 flex-1">
                               {text.replace(/^\d+\.\d+\.\s+/, '')}
                             </p>
                           </div>
                         ))
                       ) : (
-                        <p className="text-sm md:text-base text-white/80">
+                        <p className="text-[1.1rem] text-white/80">
                           {step.description}
                           {step.link && (
                             <a

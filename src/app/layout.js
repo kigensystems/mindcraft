@@ -7,6 +7,7 @@ const geist = Geist({
 });
 
 export const metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: "Mindcraft - AI Agents for Minecraft",
   description: "Open-source project implementing AI agents that can interact with players and the Minecraft environment.",
   icons: {
@@ -15,8 +16,6 @@ export const metadata = {
     apple: '/favicon_SFD_icon.ico',
   },
   manifest: '/manifest.json',
-  themeColor: '#000000',
-  viewport: 'width=device-width, initial-scale=1, maximum-scale=1',
   openGraph: {
     title: 'Mindcraft - AI Agents for Minecraft',
     description: 'Open-source project implementing AI agents that can interact with players and the Minecraft environment.',
@@ -43,6 +42,13 @@ export const metadata = {
     index: true,
     follow: true,
   },
+};
+
+export const viewport = {
+  themeColor: '#000000',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
 };
 
 export default function RootLayout({ children }) {

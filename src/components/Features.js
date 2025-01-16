@@ -55,7 +55,7 @@ export default function Features() {
             {features.map((feature, index) => (
               <div
                 key={index}
-                className="group bg-white/[0.02] rounded-lg p-4 md:p-6 2xl:p-8 min-h-[300px] md:min-h-[350px] hover:translate-y-[-4px] hover:bg-white/[0.08] hover:border-white/40 transition-all duration-300 flex flex-col items-center justify-center text-center border border-white/[0.05] hover:shadow-[0_1rem_3rem_-0.5rem_rgba(255,255,255,0.1)] hover:scale-[1.02]"
+                className="group bg-white/[0.02] rounded-lg p-4 md:p-6 2xl:p-8 min-h-[350px] md:min-h-[400px] hover:translate-y-[-4px] hover:bg-white/[0.08] hover:border-white/40 transition-all duration-300 flex flex-col items-center justify-center text-center border border-white/[0.05] hover:shadow-[0_1rem_3rem_-0.5rem_rgba(255,255,255,0.1)] hover:scale-[1.02]"
               >
                 <div 
                   className="flex flex-col items-center"
@@ -69,9 +69,9 @@ export default function Features() {
                   <img
                     src={feature.icon}
                     alt=""
-                    className="w-16 h-16 md:w-20 md:h-20 2xl:w-24 2xl:h-24 object-contain mb-6 transition-transform duration-300 group-hover:scale-110"
+                    className="w-[5.5rem] h-[5.5rem] md:w-[6.5rem] md:h-[6.5rem] 2xl:w-28 2xl:h-28 object-contain mb-6 transition-transform duration-300 group-hover:scale-110"
                   />
-                  <h3 className="text-base md:text-lg 2xl:text-xl text-white/90 font-['MinecrafterRegular'] mb-3 leading-relaxed transition-colors duration-300 group-hover:text-white">
+                  <h3 className="text-[1.2rem] md:text-[1.3rem] 2xl:text-[1.4rem] text-white/90 font-['MinecrafterRegular'] mb-3 leading-relaxed transition-colors duration-300 group-hover:text-white">
                     {feature.title}
                   </h3>
                   <p

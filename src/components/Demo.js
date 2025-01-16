@@ -86,20 +86,40 @@ export default function Demo() {
               transitionDelay: "200ms",
               backdropFilter: "blur(4px)",
               boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+              position: "relative",
+              zIndex: 1
             }}
           >
-            <video
-              ref={videoRef}
-              className="w-full h-full object-contain"
-              onTimeUpdate={handleTimeUpdate}
-              onEnded={handleVideoEnd}
-              onClick={togglePlay}
-              playsInline
-              preload="metadata"
-            >
-              <source src="/demo.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <div className="relative w-full h-full">
+              <div className="relative w-full h-full">
+                <video
+                  ref={videoRef}
+                  className="w-full h-full object-contain"
+                  onTimeUpdate={handleTimeUpdate}
+                  onEnded={handleVideoEnd}
+                  onClick={togglePlay}
+                  playsInline
+                  preload="metadata"
+                >
+                  <source src="/demo.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
+                
+                {/* Play Button Overlay */}
+                {!isPlaying && (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center bg-black/30 cursor-pointer group/play z-50"
+                    onClick={togglePlay}
+                    style={{ pointerEvents: 'auto' }}
+                  >
+                    <div className="w-20 h-20 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center transform group-hover/play:scale-110 transition-all duration-300">
+                      <div className="w-0 h-0 border-t-[15px] border-t-transparent border-l-[25px] border-l-white border-b-[15px] border-b-transparent ml-2"></div>
+                    </div>
+                    <span className="absolute mt-24 text-white/90 font-['MinecrafterRegular'] text-sm">Click to Play</span>
+                  </div>
+                )}
+              </div>
+            </div>
 
             {/* Custom Controls */}
             <div 
