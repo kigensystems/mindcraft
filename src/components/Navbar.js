@@ -55,7 +55,7 @@ export default function Navbar() {
             {[
               ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
               ['Features', 'features', (e) => handleSectionClick(e, 'features')],
-              ['Support us', 'https://pump.fun/coin/6gowBD7j3dVnxAikpoydE298f1y9CvQx745Vyz6Epump'],
+              ['Our Token', 'https://pump.fun/coin/'],
               ['GitHub', 'https://github.com/kolbytn/mindcraft'],
             ].map(([name, url, handler]) => (
               <Link
