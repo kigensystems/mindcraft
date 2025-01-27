@@ -3,7 +3,6 @@ import { useEffect } from 'react';
 import HeroSection from '@/components/HeroSection';
 import Features from '@/components/Features';
 import Demo from '@/components/Demo';
-import InstallationGuide from '@/components/InstallationGuide';
 import Footer from '@/components/Footer';
 import AnimatedTitle from '@/components/AnimatedTitle';
 
@@ -69,10 +68,6 @@ export default function Home() {
               <Demo />
             </div>
 
-            {/* Installation Guide Section */}
-            <div className="w-full">
-              <InstallationGuide />
-            </div>
           </div>
           {/* Footer */}
           <Footer />

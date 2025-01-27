@@ -73,7 +73,7 @@ export default function Demo() {
               transition: "all 600ms ease-out",
             }}
           >
-            Watch MINDcraft in Action
+            Watch DEEPSTEVE in Action
           </h2>
 
           <div

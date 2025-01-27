@@ -8,7 +8,7 @@ const geist = Geist({
 
 export const metadata = {
   metadataBase: new URL('http://localhost:3000'),
-  title: "Mindcraft - AI Agents for Minecraft",
+  title: "DEEPSTEVE - Deepseek Agent for Minecraft",
   description: "Open-source project implementing AI agents that can interact with players and the Minecraft environment.",
   icons: {
     icon: '/favicon_SFD_icon.ico',
@@ -17,7 +17,7 @@ export const metadata = {
   },
   manifest: '/manifest.json',
   openGraph: {
-    title: 'Mindcraft - AI Agents for Minecraft',
+    title: 'DEEPSTEVE - Deepseek Agent for Minecraft',
     description: 'Open-source project implementing AI agents that can interact with players and the Minecraft environment.',
     type: 'website',
     locale: 'en_US',
@@ -28,13 +28,13 @@ export const metadata = {
         url: '/mindcraft-background.png',
         width: 1200,
         height: 630,
-        alt: 'Mindcraft - AI Agents for Minecraft',
+        alt: 'DEEPSTEVE - Deepseek Agent for Minecraft',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Mindcraft - AI Agents for Minecraft',
+    title: 'DEEPSTEVE - Deepseek Agent for Minecraft',
     description: 'Open-source project implementing AI agents that can interact with players and the Minecraft environment.',
     images: ['/mindcraft-background.png'],
   },

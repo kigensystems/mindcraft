@@ -37,14 +37,10 @@ export default function Footer() {
               className="text-left"
             >
               <h2 className="text-lg font-['MinecrafterRegular'] text-white/90">
-                MINDcraft
+                DEEPSTEVE
               </h2>
-              <p className="text-white/70 text-xs">
-                Created by{' '}
-                <span className="text-white/90">Kolby Nottingham</span>
-                {' '}and{' '}
-                <span className="text-white/90">Max Robinson</span>
-              </p>
+              
+            
             </div>
 
             {/* Center: X Social */}
@@ -57,7 +53,7 @@ export default function Footer() {
               className="flex items-center"
             >
               <a
-                href="https://x.com/mindcraftllm"
+                href="https://x.com/deepsteveai"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center space-x-2 text-white/70 hover:text-[#528a67] transition-colors duration-200"
@@ -69,7 +65,7 @@ export default function Footer() {
                   height={20}
                   className="opacity-70 group-hover:opacity-100 transition-opacity"
                 />
-                <span className="text-sm">@mindcraftllm</span>
+                <span className="text-sm">@deepsteveai</span>
               </a>
             </div>
 
@@ -82,7 +78,7 @@ export default function Footer() {
               }}
               className="text-right text-white/60 text-xs"
             >
-              <p>© 2023-2025 Mindcraft</p>
+              <p>© 2023-2025 DEEPSTEVE</p>
               <p>All rights reserved</p>
             </div>
           </div>

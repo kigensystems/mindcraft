@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import Image from 'next/image';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -77,35 +78,44 @@ export default function AnimatedTitle() {
           className="minecraft-title text-6xl sm:text-7xl md:text-8xl tracking-wider"
           style={titleStyle}
         >
-          <span 
+          <span
             className="hero-shadow-deep absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
             style={titleStyle}
           >
-            MINDCRAFT
+            DEEPSTEVE
           </span>
-          <span 
+          <span
             className="hero-shadow absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
             style={titleStyle}
           >
-            MINDCRAFT
+            DEEPSTEVE
           </span>
-          <span 
+          <span
             className="hero-main absolute left-1/2 top-1/2 w-full h-full flex items-center justify-center transform-style-3d"
             style={titleStyle}
           >
-            MINDCRAFT
+            DEEPSTEVE
           </span>
         </h1>
       </div>
-      <h2 
-        className="text-lg md:text-xl lg:text-2xl text-white/90 font-['MinecrafterRegular'] tracking-[0.2em] uppercase absolute left-1/2 -translate-x-1/2 top-[75%]"
-        style={{
-          textShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
-          width: '100%'
-        }}
-      >
-        Where Minecraft Meets Intelligence
-      </h2>
+      <div className="absolute left-1/2 -translate-x-1/2 top-[75%] flex flex-col items-center gap-6">
+        <h2
+          className="text-lg md:text-xl lg:text-2xl text-white/90 font-['MinecrafterRegular'] tracking-[0.2em] uppercase"
+          style={{
+            textShadow: '2px 2px 0px rgba(0, 0, 0, 0.2)',
+            width: '100%'
+          }}
+        >
+          Minecraft AI agent powered by DeepSeek R1
+        </h2>
+        <Image
+          src="/deepseekr1.png"
+          alt="DeepSeek Logo"
+          width={200}
+          height={200}
+          className="object-contain w-[150px] md:w-[175px] lg:w-[200px]"
+        />
+      </div>
     </div>
   );
 }

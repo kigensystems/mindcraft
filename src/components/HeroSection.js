@@ -63,7 +63,7 @@ export default function HeroSection() {
                   textShadow: '0 1px 2px rgba(0, 0, 0, 0.2)'
                 }}
               >
-                Mindcraft introduces a new era of gameplay where advanced AI
+                DEEPST introduces a new era of gameplay where advanced AI
                 agents become real teammates in your Minecraft world.
               </p>
               <p

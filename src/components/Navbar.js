@@ -53,10 +53,8 @@ export default function Navbar() {
           {/* Navigation Links */}
           <div className="hidden md:flex items-center justify-center space-x-12">
             {[
-              ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
               ['Features', 'features', (e) => handleSectionClick(e, 'features')],
-              ['Follow Us', 'https://x.com/mindcraftllm'],
-              ['GitHub', 'https://github.com/kolbytn/mindcraft'],
+              ['Follow Us', 'https://x.com/deepsteveai']
             ].map(([name, url, handler]) => (
               <Link
                 key={name}
@@ -101,10 +99,8 @@ isMobileMenuOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0 pointer-events-no
 <div className="container mx-auto px-4 py-4">
 <div className="flex flex-col space-y-4">
   {[
-    ['Installation', 'installation', (e) => handleSectionClick(e, 'installationguide')],
     ['Features', 'features', (e) => handleSectionClick(e, 'features')],
-    ['Support us', 'https://pump.fun/board'],
-    ['GitHub', 'https://github.com/kolbytn/mindcraft'],
+    ['Support us', 'https://pump.fun/board']
   ].map(([name, url, handler]) => (
     <Link
       key={name}
